@@ -1,0 +1,35 @@
+/**index.wxss**/
+@import "../../sass-utils//mixin";
+.page_home{
+  background-color: #fff;
+  font-size: rpx2(14);
+}
+.block_row{
+  display: flex;
+  align-items: center;
+  min-height: rpx2(40);
+  padding: rpx2(10) rpx2(15);
+  border-bottom: rpx2(1) solid #ececec;
+  box-sizing: border-box;
+  position: relative;
+  &.required::before{
+    position: absolute;
+    content: "*";
+    color: red;
+    font-size: rpx2(20);
+    left: rpx2(15);
+    top:rpx2(11);
+  }
+  .label{
+    width: rpx2(90);
+    text-align: right;
+    margin-right: rpx2(10);
+  }
+  .input{
+    flex: 1;
+  }
+
+}
+.row_text{
+  align-items: flex-start;
+}

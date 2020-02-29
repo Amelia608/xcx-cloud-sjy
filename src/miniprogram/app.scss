@@ -1,0 +1,98 @@
+@charset "utf-8";
+@import './sass-utils/mixin';
+page {
+  color: #272636;
+  background: #f8fafb;
+  font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial,
+      sans-serif;
+  font-size: rpx2(12);
+  vertical-align: baseline;
+}
+// 边距、间距
+// 注：$spacers 列表可调整，但不应太长，以避免生成过多冗余类
+$direction: (
+  t: top,
+  r: right,
+  b: bottom,
+  l: left
+);
+$spacers: 0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 18, 20, 30, 40, 50;
+@include spacing-gen($spacers, $direction);
+$start: 9;
+//字体大小
+$end: 32;
+@include fontSize($start, $end);
+.tc {
+  text-align: center;
+}
+image {
+  display: block;
+}
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+.ellipsis2 {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.fb {
+  font-weight: bold;
+}
+.dec_line_th {
+  text-decoration: line-through;
+}
+
+.ib {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+}
+.flex-center {
+  align-items: center;
+}
+.flex-justify-center {
+  justify-content: center;
+}
+.flex-sb {
+  justify-content: space-between;
+}
+.flex-end {
+  justify-content: end;
+}
+.flex-end {
+  justify-content: flex-end;
+}
+.flex-1 {
+  flex: 1;
+}
+.bf {
+  background: #fff;
+}
+.cf {
+  color: #fff;
+}
+.vm {
+  vertical-align: middle;
+}
+.pr {
+  position: relative;
+}
+.pa {
+  position: absolute;
+}
+.round {
+  border-radius: 50%;
+}
+
+
