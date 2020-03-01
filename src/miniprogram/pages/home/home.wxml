@@ -1,15 +1,15 @@
 <view class="page_home pb20">
   <view class="block_row required">
     <view class="label">用户名：</view>
-    <input class="input" placeholder="请输入用户名" value="{{uname}}" bindinput="bindKeyInput" data-key="uname"/>
+    <input class="input" placeholder="请输入用户名" value="{{uname}}" bindinput="bindKeyInput" data-key="uname" />
   </view>
   <view class="block_row required">
     <view class="label">手机号：</view>
-    <input class="input" type="number" maxlength="11" placeholder="请输入手机号" value="{{phone}}" bindinput="bindKeyInput" data-key="phone"/>
+    <input class="input" type="number" maxlength="11" placeholder="请输入手机号" value="{{phone}}" bindinput="bindKeyInput" data-key="phone" />
   </view>
   <view class="block_row required">
     <view class="label">消费金额：</view>
-    <input class="input" type="digit"  maxlength="10" placeholder="请输入消费金额" value="{{total}}" bindinput="bindKeyInput" data-key="total"/>
+    <input class="input" type="digit" maxlength="10" placeholder="请输入消费金额" value="{{total}}" bindinput="bindKeyInput" data-key="total" />
   </view>
   <view class="block_row required">
     <view class="label">消费日期：</view>
@@ -23,6 +23,8 @@
     <textarea class="input" bindinput="bindKeyInput" value="{{remarks}}" data-key="remarks" auto-height placeholder="请输入备注" />
   </view>
   <view class="tc mt20">
-    <van-button type="danger" bind:click="submit">提 交</van-button>
+    <button type="default"  type="primary"  bindtap="submit" hover-class="other-button-hover">
+      提 交
+    </button>
   </view>
 </view>

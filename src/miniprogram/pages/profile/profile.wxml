@@ -9,10 +9,4 @@
       </view>
     </view>
   </view>
-  <van-cell
-  is-link
-  title="添加记录"
-  link-type="navigateTo"
-  url="/pages/home/home"
-/>
 </view>

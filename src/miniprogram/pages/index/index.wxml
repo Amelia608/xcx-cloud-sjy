@@ -1,14 +1,28 @@
 <view class="page_index">
-  <van-row>
-    <van-col span="6">姓名</van-col>
-    <van-col span="6">电话</van-col>
-     <van-col span="6">金额</van-col>
-    <van-col span="6">日期</van-col>
-  </van-row>
-  <van-row wx:for="{{list}}" wx:key="index">
-    <van-col span="6">{{item.uname}}</van-col>
-    <van-col span="6">{{item.phone}}</van-col>
-    <van-col span="6">{{item.total}}</van-col>
-    <van-col span="6">{{item.createTime}}</van-col>
-  </van-row>
+  <view class="filter-time">
+    <picker class="item_t" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+      <view class="picker">{{date}}</view>
+    </picker>
+    <text class="item">~</text>
+    <picker class="item_t" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+      <view class="picker">{{date}}</view>
+    </picker>
+  </view>
+  <view class="view-content">
+    <view class="header">
+      <view>姓名</view>
+      <view>电话</view>
+      <view>金额</view>
+      <view>日期</view>
+    </view>
+    <view class="body">
+      <view wx:for="{{list}}" wx:key="index">
+        <view>{{item.uname}}</view>
+        <view>{{item.phone}}</view>
+        <view>{{item.total}}</view>
+        <view>{{item.createTime}}</view>
+      </view>
+    </view>
+  </view>
 </view>
+<navigator class="iconfont icon-add" url="/pages/home/home" hover-class="none" open-type="navigate" />
