@@ -1,22 +1,36 @@
 /**index.wxss**/
-@import '../../sass-utils/variables';
-@import '../../sass-utils//mixin';
+@import "../../sass-utils/variables";
+@import "../../sass-utils//mixin";
 
-.icon-add{
+.icon-add {
   position: fixed;
   z-index: 100;
   color: $c0;
-  bottom:rpx2(30);
+  bottom: rpx2(30);
   right: rpx2(20);
   font-size: rpx2(35);
 }
-.filter-time{
+.filter-time {
+  background-color: #fff;
+  padding: 0 rpx2(15);
   display: flex;
   align-items: center;
   height: rpx2(40);
-  background-color: #fff;
-  padding: 0 rpx2(15);
-  .item{
+}
 
+.header,.body{
+  text-align: center;
+  padding: 0 rpx2(15);
+  box-sizing: border-box;
+}
+.header{
+  line-height: rpx2(40);
+  color: $c5;
+}
+.body{
+  background-color: #fff;
+  .row{
+    line-height: rpx2(48);
+    border-bottom: 1px solid  $line;
   }
 }

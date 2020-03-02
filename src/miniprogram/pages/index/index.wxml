@@ -1,28 +1,23 @@
 <view class="page_index">
   <view class="filter-time">
     <picker class="item_t" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-      <view class="picker">{{date}}</view>
-    </picker>
-    <text class="item">~</text>
-    <picker class="item_t" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-      <view class="picker">{{date}}</view>
+      <view class="picker ib">{{date}}</view>
+      <view class="iconfont icon-arrfill_u-copy1 c5 ib"></view>
     </picker>
   </view>
-  <view class="view-content">
-    <view class="header">
-      <view>姓名</view>
-      <view>电话</view>
-      <view>金额</view>
-      <view>日期</view>
-    </view>
-    <view class="body">
-      <view wx:for="{{list}}" wx:key="index">
-        <view>{{item.uname}}</view>
-        <view>{{item.phone}}</view>
-        <view>{{item.total}}</view>
-        <view>{{item.createTime}}</view>
-      </view>
+  <view class="header row">
+    <view class="col-xs-2 col-sm-2 col-md-2 col-lg-2">姓名</view>
+    <view class="col-xs-4 col-sm-4 col-md-4 col-lg-4">电话</view>
+    <view class="col-xs-2 col-sm-2 col-md-2 col-lg-2">金额(￥)</view>
+    <view class="col-xs-4 col-sm-4 col-md-4 col-lg-4">日期</view>
+  </view>
+  <view class="body">
+    <view class="row" wx:for="{{list}}" wx:key="index">
+      <view class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{item.uname}}</view>
+      <view class="col-xs-4 col-sm-4 col-md-4 col-lg-4">{{item.phone}}</view>
+      <view class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{item.total}}</view>
+      <view class="col-xs-4 col-sm-4 col-md-4 col-lg-4">{{item.createTime}}</view>
     </view>
   </view>
 </view>
-<navigator class="iconfont icon-add" url="/pages/home/home" hover-class="none" open-type="navigate" />
+<navigator class="iconfont icon-add" url="/pages/add-data/add-data" hover-class="none" open-type="navigate" />

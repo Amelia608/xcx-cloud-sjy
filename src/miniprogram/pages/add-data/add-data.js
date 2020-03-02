@@ -52,7 +52,7 @@ Page({
     });
   },
   submit() {
-    let arr = ["uname", "phone", , "total", "date"];
+    let arr = ["uname", "phone",  "total", "date"];
     for (var i = 0; i < arr.length; i++) {
       if (!this.data[arr[i]]) {
         wx.showToast({

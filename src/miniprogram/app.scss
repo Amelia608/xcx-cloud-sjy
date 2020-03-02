@@ -1,6 +1,7 @@
 @charset "utf-8";
 @import './sass-utils/mixin';
 @import './sass-utils/icons.scss';
+@import './sass-utils/grid';
 page {
   color: #272636;
   background: #f8fafb;
@@ -8,6 +9,7 @@ page {
       sans-serif;
   font-size: rpx2(12);
   vertical-align: baseline;
+  box-sizing: border-box;
 }
 // 边距、间距
 // 注：$spacers 列表可调整，但不应太长，以避免生成过多冗余类
@@ -95,5 +97,10 @@ image {
 .round {
   border-radius: 50%;
 }
-
+.c1{
+  color: $c0;
+}
+.c5{
+  color: $c5;
+}
 

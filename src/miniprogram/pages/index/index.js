@@ -15,10 +15,11 @@ Page({
   },
   getList(){
     db.collection('record').get().then(({data})=>{
-      console.log(data)
+      // console.log(data)
       this.setData({list:data})
     })
+  },
+  bindDateChange({detail}){
+    this.setData({date:detail.value})
   }
-
-
 })
