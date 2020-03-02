@@ -1,15 +1,24 @@
 <view class="page_index">
-  <view class="filter-time">
-    <picker class="item_t" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-      <view class="picker ib">{{date}}</view>
-      <view class="iconfont icon-arrfill_u-copy1 c5 ib"></view>
-    </picker>
-  </view>
-  <view class="header row">
-    <view class="col-xs-2 col-sm-2 col-md-2 col-lg-2">姓名</view>
-    <view class="col-xs-4 col-sm-4 col-md-4 col-lg-4">电话</view>
-    <view class="col-xs-2 col-sm-2 col-md-2 col-lg-2">金额(￥)</view>
-    <view class="col-xs-4 col-sm-4 col-md-4 col-lg-4">日期</view>
+  <view class="fix-part">
+    <view class="filter-row">
+      <picker class="item_t" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="valueChange" data-txt="date">
+        <view class="picker ib">{{date}}</view>
+        <view class="iconfont icon-arrfill_u-copy1 c5 ib"></view>
+      </picker>
+      <view class="search-wrap" hover-class="none" hover-stop-propagation="false">
+        <view class="input-s-w" hover-class="none" hover-stop-propagation="false">
+          <input class="input-search ib" value="{{keyword}}" type="text" placeholder="用户名/手机号码" bindinput="valueChange" data-txt="keyword"/>
+          <icon class="ib" type="search" size="28" color="#d81e06" bind:tap="search"></icon>
+        </view>
+        <icon class="icon-clear {{!keyword?'hidden':''}}" type="clear" size="23" bind:tap="clearInput"></icon>
+      </view>
+    </view>
+    <view class="header row">
+      <view class="col-xs-2 col-sm-2 col-md-2 col-lg-2">姓名</view>
+      <view class="col-xs-4 col-sm-4 col-md-4 col-lg-4">电话</view>
+      <view class="col-xs-2 col-sm-2 col-md-2 col-lg-2">金额(￥)</view>
+      <view class="col-xs-4 col-sm-4 col-md-4 col-lg-4">日期</view>
+    </view>
   </view>
   <view class="body">
     <view class="row" wx:for="{{list}}" wx:key="index">

@@ -1,5 +1,6 @@
 /**index.wxss**/
 @import "../../sass-utils//mixin";
+@import "../../sass-utils//variables";
 .page_home{
   background-color: #fff;
   font-size: rpx2(14);
@@ -32,4 +33,15 @@
 }
 .row_text{
   align-items: flex-start;
+}
+.btn-submit{
+  background-color:$c0 ;
+  color: #fff;
+  text-align: center;
+  margin: rpx2(30) rpx2(20);
+  line-height: rpx2(45);
+  border-radius: rpx2(6);
+  &.disabled{
+    opacity: .7;
+  }
 }

@@ -1,7 +1,11 @@
 /**index.wxss**/
 @import "../../sass-utils/variables";
 @import "../../sass-utils//mixin";
-
+.fix-part{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 .icon-add {
   position: fixed;
   z-index: 100;
@@ -10,12 +14,40 @@
   right: rpx2(20);
   font-size: rpx2(35);
 }
-.filter-time {
+.filter-row {
   background-color: #fff;
   padding: 0 rpx2(15);
   display: flex;
   align-items: center;
   height: rpx2(40);
+  justify-content: space-between;
+  .search-wrap{
+    flex: 1;
+    margin-left: rpx2(30);
+    position: relative;
+  }
+  .input-s-w{
+    display: flex;
+    align-items: center;
+  }
+  .icon-clear{
+    position: absolute;
+    right: rpx2(35);
+    top:50%;
+    transform: translateY(-50%);
+    z-index: 200;
+    &.hidden{
+      display: none;
+    }
+  }
+  .input-search{
+    width: 100%;
+    height: rpx2(30);
+    font-size: rpx2(12);
+    border: 1px solid $line;
+    border-radius: rpx2(3);
+    padding: 0 rpx2(5);
+  }
 }
 
 .header,.body{
@@ -26,6 +58,7 @@
 .header{
   line-height: rpx2(40);
   color: $c5;
+  background-color: $bg;
 }
 .body{
   background-color: #fff;

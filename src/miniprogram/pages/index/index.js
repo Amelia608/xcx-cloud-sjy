@@ -5,6 +5,8 @@ const db=wx.cloud.database()
 Page({
   data: {
    list:[],
+   keyword:'',
+   loading:false,
    date:utils.dateFormat(new Date(),'yyyy-MM-dd')
   },
   onLoad(){
@@ -14,12 +16,24 @@ Page({
     this.getList()
   },
   getList(){
+    wx.showLoading({
+      title:'数据加载中...' ,
+      mask: true
+    });
     db.collection('record').get().then(({data})=>{
       // console.log(data)
       this.setData({list:data})
+      wx.hideLoading()
     })
   },
-  bindDateChange({detail}){
-    this.setData({date:detail.value})
+  valueChange({detail,currentTarget}){
+    this.setData({[currentTarget.dataset.txt]:detail.value})
+  },
+  search(){
+    // console.log(1)
+    this.getList()
+  },
+  clearInput(){
+    this.setData({keyword:''})
   }
 })

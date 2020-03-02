@@ -22,9 +22,5 @@
     <view class="label">备注：</view>
     <textarea class="input" bindinput="bindKeyInput" value="{{remarks}}" data-key="remarks" auto-height placeholder="请输入备注" />
   </view>
-  <view class="tc mt20">
-    <button type="default"  type="primary"  bindtap="submit" hover-class="other-button-hover">
-      提 交
-    </button>
-  </view>
+  <view class="btn-submit {{!uname||!phone||!total||!total?'disabled':''}}" bind:tap="submit">提 交</view>
 </view>

@@ -55,16 +55,6 @@ Page({
     let arr = ["uname", "phone",  "total", "date"];
     for (var i = 0; i < arr.length; i++) {
       if (!this.data[arr[i]]) {
-        wx.showToast({
-          title: "*为必填项",
-          icon: "none",
-          image: "",
-          duration: 1500,
-          mask: false,
-          success: result => {},
-          fail: () => {},
-          complete: () => {}
-        });
         return;
       }
     }
