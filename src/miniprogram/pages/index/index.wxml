@@ -5,12 +5,9 @@
         <view class="picker ib">{{date}}</view>
         <view class="iconfont icon-arrfill_u-copy1 c5 ib"></view>
       </picker>
-      <view class="search-wrap" hover-class="none" hover-stop-propagation="false">
-        <view class="input-s-w" hover-class="none" hover-stop-propagation="false">
-          <input class="input-search ib" value="{{keyword}}" type="text" placeholder="用户名/手机号码" bindinput="valueChange" data-txt="keyword"/>
-          <icon class="ib" type="search" size="28" color="#d81e06" bind:tap="search"></icon>
-        </view>
-        <icon class="icon-clear {{!keyword?'hidden':''}}" type="clear" size="23" bind:tap="clearInput"></icon>
+      <view class="search-wrap">
+        <input class="input-search ib" value="{{keyword}}" type="text" confirm-type="search" placeholder="用户名/手机号码" bindinput="valueChange" data-txt="keyword" bindconfirm="bindconfirm"/>
+        <icon class="icon icon-search" type="search"   bind:tap="search" />
       </view>
     </view>
     <view class="header row">

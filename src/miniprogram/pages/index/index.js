@@ -1,39 +1,78 @@
 //index.js
-const utils=require('../../utils/index')
-const app = getApp()
-const db=wx.cloud.database()
+const utils = require("../../utils/index");
+const app = getApp();
+const db = wx.cloud.database();
+const _ = db.command;
 Page({
   data: {
-   list:[],
-   keyword:'',
-   loading:false,
-   date:utils.dateFormat(new Date(),'yyyy-MM-dd')
+    list: [],
+    page: 1,
+    num: 10,
+    keyword: "",
+    loading: false,
+    date: utils.dateFormat(new Date(), "yyyy-MM-dd")
   },
-  onLoad(){
-    this.getList()
+  onLoad() {
+    this.getList();
   },
-  onShow(){
-    this.getList()
+  onShow() {
+    this.getList();
   },
-  getList(){
-    wx.showLoading({
-      title:'数据加载中...' ,
-      mask: true
+  getList() {
+    let database = "record";
+    let condition = {
+      uname: {
+        $regex: ".*" + this.data.keyword,
+        $options: "i"
+      }
+    };
+
+    let { list, page, num } = this.data;
+    let that = this;
+
+    this.setData({
+      loading: true
     });
-    db.collection('record').get().then(({data})=>{
-      // console.log(data)
-      this.setData({list:data})
-      wx.hideLoading()
-    })
+    // 模糊查询
+    wx.cloud.callFunction({
+        name: "collectionGet",
+        data: {
+          database,
+          page,
+          num,
+          condition
+        }
+      }).then(res => {
+        if (!res.result.data.length) {
+          console.log(res)
+          // 没搜索到
+          that.setData({
+            loading: false,
+            isOver: true
+          });
+        } else {
+          let res_data = res.result.data;
+          list.push(...res_data);
+          that.setData({
+            list:res.result.data,
+            loading: false
+          });
+        }
+      })
+      .catch(console.error);
   },
-  valueChange({detail,currentTarget}){
-    this.setData({[currentTarget.dataset.txt]:detail.value})
+  bindconfirm() {
+    this.getList();
   },
-  search(){
+  valueChange({ detail, currentTarget }) {
+    this.setData({ [currentTarget.dataset.txt]: detail.value });
+    this.getList();
+  },
+  search() {
     // console.log(1)
-    this.getList()
+    this.getList();
   },
-  clearInput(){
-    this.setData({keyword:''})
+  clearInput() {
+    this.setData({ keyword: "" });
   }
-})
+});
