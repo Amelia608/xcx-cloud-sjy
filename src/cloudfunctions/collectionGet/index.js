@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
    * condition： 查询条件，例如 { name: '李白' }
    */
 
-  const {database, page, num, condition} = event
+  const {database, page, num, condition,orderByT,orderByO} = event
   console.log(event)
 
   try {

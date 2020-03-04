@@ -1,13 +1,13 @@
 <view class="page_index">
   <view class="fix-part">
     <view class="filter-row">
-      <picker class="item_t" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="valueChange" data-txt="date">
+      <picker class="item_t" mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="valueChange" data-txt="date">
         <view class="picker ib">{{date}}</view>
         <view class="iconfont icon-arrfill_u-copy1 c5 ib"></view>
       </picker>
       <view class="search-wrap">
-        <input class="input-search ib" value="{{keyword}}" type="text" confirm-type="search" placeholder="用户名/手机号码" bindinput="valueChange" data-txt="keyword" bindconfirm="bindconfirm"/>
-        <icon class="icon icon-search" type="search"   bind:tap="search" />
+        <input class="input-search ib" value="{{keyword}}" type="text" confirm-type="search" placeholder="用户名/手机号码" bindinput="valueChange" data-txt="keyword" bindconfirm="bindconfirm" />
+        <icon class="icon icon-search" type="search" bind:tap="search" />
       </view>
     </view>
     <view class="header row">
@@ -23,6 +23,15 @@
       <view class="col-xs-4 col-sm-4 col-md-4 col-lg-4">{{item.phone}}</view>
       <view class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{item.total}}</view>
       <view class="col-xs-4 col-sm-4 col-md-4 col-lg-4">{{item.createTime}}</view>
+    </view>
+    <view class='item loading' wx:if="{{loading}}" style='text-align:center;'>
+      <image class='' src='/images/loading/loading-bars.svg' style='height: 60px;'></image>
+    </view>
+     <view class='bottom' wx:if="{{!list.length}}" style='text-align:center;font-size:24rpx;padding:30rpx;'>
+      <text style='color:#666;'>--- 暂无数据---</text>
+    </view>
+    <view class='bottom' wx:if="{{isOver&&list.length}}" style='text-align:center;font-size:24rpx;padding:30rpx;'>
+      <text style='color:#666;'>--- 我是有底线的 ---</text>
     </view>
   </view>
 </view>
