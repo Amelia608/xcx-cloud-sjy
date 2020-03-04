@@ -42,11 +42,11 @@ Page({
             num,
             condition:{
               uname: {
-                $regex: "^" + this.data.keyword,
+                $regex: ".*" + this.data.keyword,
                 $options: "i"
               },
               createTime:{
-                $regex: "^" + this.data.date,
+                $regex: ".*" + this.data.date,
                 $options: "i"
               }
             }

@@ -14,36 +14,7 @@ Page({
     date: utils.dateFormat(new Date(), "yyyy-MM-dd")
   },
 
-  onLoad: function() {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: "../chooseLib/chooseLib"
-      });
-      return;
-    }
-
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting["scope.userInfo"]) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              });
-            }
-          });
-        }
-      }
-    });
-  },
-  bindDateChange: function(e) {
-    this.setData({
-      date: e.detail.value
-    });
-  },
+  onLoad: function() {},
   bindKeyInput({ currentTarget, detail }) {
     let key = currentTarget.dataset.key;
     let value = detail.value;
@@ -52,7 +23,7 @@ Page({
     });
   },
   submit() {
-    let arr = ["uname", "phone",  "total", "date"];
+    let arr = ["uname", "phone", "total", "date"];
     for (var i = 0; i < arr.length; i++) {
       if (!this.data[arr[i]]) {
         return;
@@ -75,17 +46,19 @@ Page({
     wx.showLoading({
       title: "数据提交中"
     });
-    db.collection("record")
-      .add({
+    wx.cloud.callFunction({
+        name: "collectionAdd",
         data: {
-          uname: this.data.uname,
-          phone: this.data.phone,
-          total: this.data.total,
-          createTime: this.data.date,
-          remarks: this.data.remarks
+          database: "record",
+          data: {
+            uname: this.data.uname,
+            phone: this.data.phone,
+            total: this.data.total,
+            createTime: this.data.date,
+            remarks: this.data.remarks
+          }
         }
-      })
-      .then(() => {
+      }).then(() => {
         wx.hideLoading();
         wx.showToast({
           title: "新增成功",

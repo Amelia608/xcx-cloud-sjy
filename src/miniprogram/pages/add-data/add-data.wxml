@@ -13,7 +13,7 @@
   </view>
   <view class="block_row required">
     <view class="label">消费日期：</view>
-    <picker class="pick" mode="date" value="{{date}}" start="2015-09-01" end="{{enddata}}" bindchange="bindDateChange">
+    <picker class="pick" mode="date" value="{{date}}" start="2015-09-01" end="{{enddata}}" bindchange="bindKeyInput" data-key="date">
       <view class="no_place" wx:if="{{data}}">请选择消费日期</view>
       <view class="" wx:else>{{date}}</view>
     </picker>
