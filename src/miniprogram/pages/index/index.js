@@ -11,47 +11,47 @@ Page({
     num: 10,
     loading: false,
     isOver: false,
-    startDate:'2017-01-01',
-    endDate:utils.dateFormat(new Date(), "yyyy-MM-dd"),
+    startDate: "2017-01-01",
+    endDate: utils.dateFormat(new Date(), "yyyy-MM-dd"),
     date: utils.dateFormat(new Date(), "yyyy-MM-dd")
   },
   onLoad() {
-    this.getList();
   },
   onShow() {
-
+    this.getList();
   },
-  onReachBottom: function () {
+  onReachBottom: function() {
     if (!this.data.loading) {
-      this.getList()
+      this.getList();
     }
   },
   getList() {
-    console.log(1)
     if (!this.data.isOver) {
       let { list, page, num } = this.data;
       let that = this;
       this.setData({
         loading: true
       });
-      wx.cloud.callFunction({
+      wx.cloud
+        .callFunction({
           name: "collectionGet",
           data: {
             database: "record",
             page,
             num,
-            condition:{
+            condition: {
               uname: {
                 $regex: ".*" + this.data.keyword,
                 $options: "i"
               },
-              createTime:{
+              createTime: {
                 $regex: ".*" + this.data.date,
                 $options: "i"
               }
             }
           }
-        }).then(res => {
+        })
+        .then(res => {
           if (!res.result.data.length) {
             that.setData({
               loading: false,
@@ -79,7 +79,7 @@ Page({
       isOver: false,
       list: [],
       page: 1
-    })
+    });
     this.getList();
   },
   search() {
