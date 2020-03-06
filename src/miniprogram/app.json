@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/charts/charts",
     "pages/profile/profile",
     "pages/add-data/add-data"
   ],
@@ -20,6 +21,12 @@
         "text": "数据",
         "iconPath": "images/icon_data.png",
         "selectedIconPath": "images/icon_data_on.png"
+      },
+      {
+        "pagePath": "pages/charts/charts",
+        "text": "charts",
+        "iconPath": "images/icon_charts.png",
+        "selectedIconPath": "images/icon_charts_on.png"
       },
       {
         "pagePath": "pages/profile/profile",

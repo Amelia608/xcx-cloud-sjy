@@ -9,4 +9,10 @@
       </view>
     </view>
   </view>
+  <view class="row-link">
+    <view class="link-l">日报表</view>
+    <view class="link-r">
+      <text class="iconfont icon-ribaobiao"></text>
+    </view>
+  </view>
 </view>
