@@ -1,92 +1,137 @@
-//index.js
-const utils = require("../../utils/index");
-const app = getApp();
-const db = wx.cloud.database();
-const _ = db.command;
-Page({
-  data: {
-    keyword: "",
-    list: [],
-    page: 1,
-    num: 10,
-    loading: false,
-    isOver: false,
-    startDate: "2017-01-01",
-    endDate: utils.dateFormat(new Date(), "yyyy-MM-dd"),
-    date: utils.dateFormat(new Date(), "yyyy-MM-dd")
-  },
-  onLoad() {
-  },
-  onShow() {
-    this.getList();
-  },
-  onReachBottom: function() {
-    if (!this.data.loading) {
-      this.getList();
-    }
-  },
-  getList() {
-    if (!this.data.isOver) {
-      let { list, page, num } = this.data;
-      let that = this;
-      this.setData({
-        loading: true
-      });
-      wx.cloud
-        .callFunction({
-          name: "collectionGet",
-          data: {
-            database: "record",
-            page,
-            num,
-            condition: {
-              uname: {
-                $regex: ".*" + this.data.keyword,
-                $options: "i"
-              },
-              createTime: {
-                $regex: ".*" + this.data.date,
-                $options: "i"
+import * as echarts from '../../ec-canvas/echarts';
+
+let chart = null;
+
+function initChart(canvas, width, height, dpr) {
+  chart = echarts.init(canvas, null, {
+    width: width,
+    height: height,
+    devicePixelRatio: dpr // new
+  });
+  canvas.setChart(chart);
+
+  var option = {
+    title : {
+        text: '订单统计',
+        subtext: ''
+    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'cross'
+        }
+    },
+    grid: {
+      right: '10%'
+    },
+    legend: {
+        data:['成交金额','成交笔数']
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            axisTick: {
+              alignWithLabel: false,
+              lineStyle: {
+                color: '#EBEEF5'
               }
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#909399'
+              }
+            },
+            axisLabel: {
+              show: true,
+              textStyle: {
+                color: '#909399'
+              }
+            },
+            splitLine: {
+              show: false
+            },
+            data : ['周一','周二','周三','周四','周五','周六','周日']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            axisLabel : {
+                formatter: '{value}'
             }
-          }
-        })
-        .then(res => {
-          if (!res.result.data.length) {
-            that.setData({
-              loading: false,
-              isOver: true
-            });
-          } else {
-            let res_data = res.result.data;
-            list.push(...res_data);
-            that.setData({
-              list,
-              page: page + 1,
-              loading: false
-            });
-          }
-        })
-        .catch(console.error);
+        }
+    ],
+    series : [
+        {
+            name:'成交金额',
+            type:'line',
+            data:[11, 11, 15, 13, 12, 13, 10],
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            },
+            markLine : {
+                data : [
+                    {type : 'average', name: '平均值'}
+                ]
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#909399'
+              }
+            },
+        },
+        {
+            name:'成交笔数',
+            type:'line',
+            data:[1, -2, 2, 5, 3, 2, 0],
+            markPoint : {
+                data : [
+                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                ]
+            },
+            markLine : {
+                data : [
+                    {type : 'average', name : '平均值'}
+                ]
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#909399'
+              }
+            },
+        }
+    ]
+};
+
+  chart.setOption(option);
+  return chart;
+}
+
+Page({
+  onShareAppMessage: function (res) {
+    return {
+      title: 'ECharts 可以在微信小程序中使用啦！',
+      path: '/pages/index/index',
+      success: function () { },
+      fail: function () { }
     }
   },
-  bindconfirm() {
-    this.getList();
+  data: {
+    ec: {
+      onInit: initChart
+    }
   },
-  valueChange({ detail, currentTarget }) {
-    this.setData({ [currentTarget.dataset.txt]: detail.value });
-    this.setData({
-      isOver: false,
-      list: [],
-      page: 1
-    });
-    this.getList();
+  onLoad(){
   },
-  search() {
-    // console.log(1)
-    this.getList();
-  },
-  clearInput() {
-    this.setData({ keyword: "" });
+  onReady() {
+    setTimeout(function () {
+      // 获取 chart 实例的方式
+      console.log(chart)
+    }, 2000);
   }
 });

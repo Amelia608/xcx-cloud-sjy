@@ -1,66 +1,24 @@
 /**index.wxss**/
 @import "../../sass-utils/variables";
 @import "../../sass-utils//mixin";
-.fix-part{
-  position: sticky;
+/**index.wxss**/
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+/**app.wxss**/
+.container {
+  position: absolute;
   top: 0;
-  z-index: 100;
-}
-.icon-add {
-  position: fixed;
-  z-index: 100;
-  color: $c0;
-  bottom: rpx2(30);
-  right: rpx2(20);
-  font-size: rpx2(35);
-}
-.filter-row {
-  background-color: #fff;
-  padding: 0 rpx2(15);
+  bottom: 0;
+  left: 0;
+  right: 0;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
-  height: rpx2(40);
   justify-content: space-between;
-  .search-wrap{
-    flex: 1;
-    margin-left: rpx2(30);
-    position: relative;
-  }
-  .icon{
-    position: absolute;
-    top:50%;
-    transform: translateY(-50%);
-    z-index: 5000;
-  }
-
-  .icon-search{
-    left: rpx2(5);
-  }
-  .input-search{
-    width: 100%;
-    height: rpx2(30);
-    font-size: rpx2(12);
-    border: rpx2(1) solid #ccc;
-    border-radius: rpx2(50);
-    padding: 0 rpx2(5) 0 rpx2(30);
-    box-sizing: border-box;
-  }
-}
-
-.header,.body{
-  text-align: center;
-  padding: 0 rpx2(15);
   box-sizing: border-box;
 }
-.header{
-  line-height: rpx2(40);
-  color: $c5;
-  background-color: $bg;
-}
-.body{
-  background-color: #fff;
-  .row{
-    line-height: rpx2(48);
-    border-bottom: 1px solid  $line;
-  }
-}
+
+
