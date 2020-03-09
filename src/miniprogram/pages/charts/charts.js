@@ -1,4 +1,4 @@
-import * as echarts from '../../ec-canvas/echarts';
+import * as echarts from "../../ec-canvas/echarts";
 
 let chart = null;
 
@@ -11,127 +11,174 @@ function initChart(canvas, width, height, dpr) {
   canvas.setChart(chart);
 
   var option = {
-    title : {
-        text: '订单统计',
-        subtext: ''
+    title: {
+      text: "订单统计",
+      subtext: ""
     },
-    tooltip : {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'cross'
-        }
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "cross"
+      }
+    },
+
+    legend: {
+      data: ["成交金额", "成交笔数"]
+    },
+    color: ["#FF7F45", "#5889FF"],
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "cross"
+      }
     },
     grid: {
-      right: '10%'
+      right: "10%"
     },
-    legend: {
-        data:['成交金额','成交笔数']
-    },
-    calculable : true,
-    xAxis : [
-        {
-            type : 'category',
-            boundaryGap : false,
-            axisTick: {
-              alignWithLabel: false,
-              lineStyle: {
-                color: '#EBEEF5'
-              }
-            },
-            axisLine: {
-              lineStyle: {
-                color: '#909399'
-              }
-            },
-            axisLabel: {
-              show: true,
-              textStyle: {
-                color: '#909399'
-              }
-            },
-            splitLine: {
-              show: false
-            },
-            data : ['周一','周二','周三','周四','周五','周六','周日']
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value',
-            axisLabel : {
-                formatter: '{value}'
-            }
-        }
-    ],
-    series : [
-        {
-            name:'成交金额',
-            type:'line',
-            data:[11, 11, 15, 13, 12, 13, 10],
-            markPoint : {
-                data : [
-                    {type : 'max', name: '最大值'},
-                    {type : 'min', name: '最小值'}
-                ]
-            },
-            markLine : {
-                data : [
-                    {type : 'average', name: '平均值'}
-                ]
-            },
-            axisLine: {
-              lineStyle: {
-                color: '#909399'
-              }
-            },
+    xAxis: [
+      {
+        type: "category",
+        axisTick: {
+          alignWithLabel: false,
+          lineStyle: {
+            color: "#EBEEF5"
+          }
         },
-        {
-            name:'成交笔数',
-            type:'line',
-            data:[1, -2, 2, 5, 3, 2, 0],
-            markPoint : {
-                data : [
-                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
-                ]
-            },
-            markLine : {
-                data : [
-                    {type : 'average', name : '平均值'}
-                ]
-            },
-            axisLine: {
-              lineStyle: {
-                color: '#909399'
-              }
-            },
+        axisLine: {
+          lineStyle: {
+            color: "#909399"
+          }
+        },
+        data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: "#909399"
+          }
+        },
+        //网格样式
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: ["red"],
+            width: 1,
+            type: "solid"
+          }
         }
+      }
+    ],
+    yAxis: [
+      {
+        axisTick: {
+          alignWithLabel: false,
+          lineStyle: {
+            color: "#909399"
+          }
+        },
+        axisLine: {
+          lineStyle: {
+            color: "#909399"
+          }
+        },
+        type: "value",
+        name: "成交笔数（件）",
+        min: 0,
+        position: "right",
+        max: 50,
+        splitNumber: 5,
+        interval: 10,
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: ["blue"],
+            width: 1,
+            type: "solid"
+          }
+        },
+        axisLabel: {
+          formatter: "{value}",
+          textStyle: {
+            color: "#909399"
+          }
+        }
+      },
+      {
+        axisTick: {
+          alignWithLabel: false,
+          lineStyle: {
+            color: "#EBEEF5"
+          }
+        },
+        axisLine: {
+          lineStyle: {
+            color: "#909399"
+          }
+        },
+        type: "value",
+        name: "成交金额（元）",
+        min: 0,
+        position: "left",
+        max: 500,
+        splitNumber: 5,
+        interval: 100,
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: ["orange"],
+            width: 1,
+            type: "solid"
+          }
+        },
+        axisLabel: {
+          formatter: "{value}",
+          textStyle: {
+            color: "#909399"
+          }
+        }
+      }
+    ],
+    series: [
+      {
+        name: "成交金额",
+        type: "line",
+        yAxisIndex: 1,
+        data: [100, 200, 240, 300, 450, 500, 600, 100],
+        smooth: true
+      },
+      {
+        name: "成交笔数",
+        type: "line",
+        yAxisIndex: 0,
+        data: [10, 23, 12, 1, 33, 7, 10],
+        smooth: true
+        // symbol:'none',
+      }
     ]
-};
+  };
 
   chart.setOption(option);
   return chart;
 }
 
 Page({
-  onShareAppMessage: function (res) {
+  onShareAppMessage: function(res) {
     return {
-      title: 'ECharts 可以在微信小程序中使用啦！',
-      path: '/pages/index/index',
-      success: function () { },
-      fail: function () { }
-    }
+      title: "ECharts 可以在微信小程序中使用啦！",
+      path: "/pages/index/index",
+      success: function() {},
+      fail: function() {}
+    };
   },
   data: {
     ec: {
       onInit: initChart
     }
   },
-  onLoad(){
-  },
+  onLoad() {},
   onReady() {
-    setTimeout(function () {
+    setTimeout(function() {
       // 获取 chart 实例的方式
-      console.log(chart)
+      console.log(chart);
     }, 2000);
   }
 });
