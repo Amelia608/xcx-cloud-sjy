@@ -1,8 +1,15 @@
-import * as echarts from '../../ec-canvas/echarts';
+import * as echarts from "../../ec-canvas/echarts";
+const app=getApp();
 
-const app = getApp();
+let chart = null;
+function initChart(canvas, width, height, dpr) {
+  chart = echarts.init(canvas, null, {
+    width: width,
+    height: height,
+    devicePixelRatio: dpr // new
+  });
+  canvas.setChart(chart);
 
-function setOption(chart) {
   var option = {
     title: {
       text: "",
@@ -117,54 +124,21 @@ function setOption(chart) {
     ]
   };
   chart.setOption(option);
+  return chart;
 }
 
 Page({
-  onReady: function () {
-    // 获取组件
-    this.ecComponent = this.selectComponent('#mychart-dom-bar');
-    this.init()
-  },
-
-
   data: {
-    tabList: [{ code: 7 }, { code: 15 }, { code: 30 }],
-    tabIndex: 0,
     ec: {
-      // 将 lazyLoad 设为 true 后，需要手动初始化图表
-      lazyLoad: true
-    },
-    isLoaded: false,
-    isDisposed: false
+      onInit: initChart
+    }
   },
-
-  // 点击按钮后初始化图表
-  init: function () {
-    this.ecComponent.init((canvas, width, height, dpr) => {
-      // 获取组件的 canvas、width、height 后的回调函数
-      // 在这里初始化图表
-      const chart = echarts.init(canvas, null, {
-        width: width,
-        height: height,
-        devicePixelRatio: dpr // new
-      });
-      setOption(chart);
-
-      // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问
-      this.chart = chart;
-
-      this.setData({
-        isLoaded: true,
-        isDisposed: false
-      });
-
-      // 注意这里一定要返回 chart 实例，否则会影响事件处理等
-      return chart;
-    });
-  },
-  tabClick({ currentTarget }) {
-    this.setData({ tabIndex: currentTarget.dataset.index });
-    console.log(currentTarget);
-    this.init()
+  onLoad() {},
+  onReady() {
+    setTimeout(function() {
+      // 获取 chart 实例的方式
+      initChart()
+      console.log(chart);
+    }, 2000);
   }
 });

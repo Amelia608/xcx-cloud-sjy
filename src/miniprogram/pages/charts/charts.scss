@@ -9,16 +9,33 @@ ec-canvas {
 /**app.wxss**/
 .container {
   position: absolute;
-  top: 0;
+  top: rpx2(60);
   bottom: 0;
-  left: 0;
-  right: 0;
-
+  left: rpx2(15);
+  right: rpx2(15);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
 }
+.tabs-wrap{
+  display: flex;
+  border: 1px solid #ebeef5;
+  width: rpx2(210);
+  margin:rpx2(10) auto 0;
+  border-radius: rpx2(25);
+  .item{
+    width:rpx2(70);
+    line-height: rpx2(40);
+    text-align: center;
+    border-radius: rpx2(25);
+    &.active{
+      background: rgba($c0,.9);
+      color: #fff;
+    }
+  }
+}
+
 
 

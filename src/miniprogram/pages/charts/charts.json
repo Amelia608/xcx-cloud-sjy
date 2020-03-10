@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "首页",
+  "navigationBarTitleText": "订单统计",
   "usingComponents": {
     "ec-canvas": "../../ec-canvas/ec-canvas"
   }
