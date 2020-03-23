@@ -115,12 +115,12 @@ gulp.task('dev', [/*'clean-dist'*/], () => {
 });
 
 gulp.task('build', ['clean-dist'], () => {
-  gulp.start('min-img', 'min-js', 'min-json', 'min-wxml', 'min-wxss');
+  // gulp.start('min-img', 'min-js', 'min-json', 'min-wxml', 'min-wxss');
+  gulp.start('dev-img', 'min-js', 'min-json', 'min-wxml', 'min-wxss');
 });
 //压缩小程序js文件
 gulp.task('jsmin', function() {
-    gulp.src(['src/*/*.js'])
-    .pipe(uglify())
-    .pipe(gulp.dest('dist/js'))
-
+    gulp.src(['src/*/*.js'])
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/js'))
 });
